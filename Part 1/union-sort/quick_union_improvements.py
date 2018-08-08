@@ -6,6 +6,8 @@ class QuickUnionUF():
     
     def get_id(self):
         return self.__id
+    def get_sz(self):
+        return self.__sz
 
     def QuickUnionUF(self, N):
         self.__id = [None]*N
@@ -17,8 +19,17 @@ class QuickUnionUF():
 
 
     def __root(self, i):
+        # Commented out code is me trying to implement setting all elements
+            # examined above i to the root. This flattens it
+        # root = i
+        # while root != self.__id[root]:
+        #     root = self.__id[root]
+        
         while i != self.__id[i]:
+            self.__id[i] = self.__id[self.__id[i]]
             i = self.__id[i]
+            # self.__id[i] = root
+            
         return i
     
     def connected(self, p, q):
@@ -27,14 +38,36 @@ class QuickUnionUF():
     def union(self, p, q):
         i = self.__root(p)
         j = self.__root(q)
-        if sz[i] < sz[j]:
+        if self.__sz[i] < self.__sz[j]:
             self.__id[i] = j
-            sz[j] += sz[i]
+            self.__sz[j] += self.__sz[i]
         else:
             self.__id[j] = i
-            sz[i] += sz[j]
+            self.__sz[i] += self.__sz[j]
+        self.__root(q)
         return
 
 union = QuickUnionUF([])
 union.QuickUnionUF(10)
 print(union.get_id())
+union.union(6,5)
+print("union(6,5)")
+print("id", union.get_id())
+print("sz", union.get_sz())
+print("\n")
+union.union(4,3)
+print("union(4,3)")
+print("id", union.get_id())
+print("sz", union.get_sz())
+print("\n")
+
+union.union(9,2)
+print("union(9,2)")
+print("id", union.get_id())
+print("sz", union.get_sz())
+print("\n")
+union.union(4,2)
+print("union(4,2)")
+print("id", union.get_id())
+print("sz", union.get_sz())
+print("\n")
