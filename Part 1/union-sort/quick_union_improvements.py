@@ -19,7 +19,7 @@ class QuickUnionUF():
 
 
     def __root(self, i):
-        # Commented out code is me trying to implement setting all elements
+        # Commented out code is me setting all elements
             # examined above i to the root. This flattens it
         # root = i
         # while root != self.__id[root]:
