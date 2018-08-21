@@ -1,22 +1,4 @@
-
-class Selection():
-    
-    @staticmethod
-    def sort(a):
-        N = len(a)
-        i = 0
-        while i < N:
-            min = i
-            j = i + 1
-            while j < N:
-                if Selection.less(a[j], a[min]):
-                    min = j
-                j += 1
-            Selection.exch(a, i, min)
-            i += 1
-
-
-
+class Insertion():
     @staticmethod
     def less(v,w):
         if v < w:
@@ -36,11 +18,25 @@ class Selection():
     def isSorted(a):
         i = 1
         while i < len(a):
-            if Selection.less(a[i], a[i-1]):
+            if Insertion.less(a[i], a[i-1]):
                 return False
             i += 1
         return True
+    
+    @staticmethod
+    def sort(a):
+        i = 0
+        N = len(a)
+        while i < N:
+            j = i
+            while j > 0:
+                if Insertion.less(a[j], a[j-1]):
+                    Insertion.exch(a, j, j-1)
+                else:
+                    break
+                j -= 1
+            i += 1
 
 a = [5,2,3,1]
-Selection.sort(a)
+Insertion.sort(a)
 print(a)
