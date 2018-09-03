@@ -1,5 +1,4 @@
-class BinaryHeap:
-
+class Heapsort:
     def __init__(self,a):
         self.a = a
         self.N = len(self.a) - 1
@@ -32,7 +31,6 @@ class BinaryHeap:
                 pass
             elif self.less(j, j + 1): #Find the larger of the two children
                 j += 1
-
             if not self.less(k, j):
                 break
             self.exch(k, j)
@@ -45,19 +43,22 @@ class BinaryHeap:
         self.sink(1)
         return max
 
+    def constructHeap(self):
+        k = self.N//2
+        while k >= 1:
+            # print("k",k)
+            # print("a before sink", self.a)
+            self.sink(k)
+            # print("a after sink", self.a)
+            k -= 1
 
-
-
-
-a=BinaryHeap([None,16,11,11,10,6,10,8,9,8,5])
-# a=BinaryHeap([None, "T","S","R","N","P","O","A","E","I","G","H"])
-# a.swim(8)
-# a.insert(99)
-print("before pop", a.a, "length", a.N)
-print(a.delMax())
-print("after pop", a.a, "length", a.N)
-# print(a.delMax())
-# print("after pop", a.a, "length", a.N)
-# a.insert("S")
-# print("After insert S", a.a, "length", a.N)
-         
+    def sort(self):
+        while self.N > 1:
+            self.exch(1,self.N)
+            self.N -= 1
+            self.sink(1)
+            
+a = Heapsort([None,"S","O","R","T","E","X","A","M","P","L","E"])
+a.constructHeap()
+a.sort()
+print(a.a)
