@@ -38,9 +38,9 @@ class BST:
         if node == None:
             return BST.Node(key, value)
         if key < node.key:
-            node.left = BST.__put(node.left, key, value)
+            node.left = self.__put(node.left, key, value)
         elif key > node.key:
-            node.right = BST.__put(node.right, key, value)
+            node.right = self.__put(node.right, key, value)
         else:
             node.val = value
         return node
