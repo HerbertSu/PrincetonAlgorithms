@@ -19,6 +19,19 @@ class BST:
             return None
         return node.count
     
+    def deleteMin(self):
+        self.root = self.__deleteMin(self.root)
+    
+    def __deleteMin(self, node):
+        if node.left == None:
+            return node.right
+        node.left = self.__deleteMin(node.left)
+        node.count = 1 + self.size(node.left) + self.size(node.right)
+        return node
+
+        
+
+
     def get(self, key):
         node = self.root 
         while node != None:
