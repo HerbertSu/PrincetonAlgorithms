@@ -23,19 +23,19 @@ class BST:
 
 
     def put(self, key, value):
-        self.root = self.__put( self.root, key, value)    
+        self.root = self.__put(self.root, key, value)    
 
     def __put(self, node, key, value):
         if node == None:
             return BST.Node(key, value)
         if key < node.key:
-            node.left = BST.__put(node.left, key, value)
+            node.left = self.__put(node.left, key, value)
         elif key > node.key:
-            node.right = BST.__put(node.right, key, value)
+            node.right = self.__put(node.right, key, value)
         else:
             node.val = value
         return node
 
 bst = BST(BST.Node(1,1))
-bst.put(0,0)
+bst.put(2,2)
 print(bst.get(2))
