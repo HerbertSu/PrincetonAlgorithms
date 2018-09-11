@@ -29,6 +29,31 @@ class BST:
         node.count = 1 + self.size(node.left) + self.size(node.right)
         return node
 
+    def delete(self, key):
+        self.root = self.__delete(self.root, key)
+    
+    def __delete(self, x, key):
+        if x == None:
+            return None
+        if key < x.key:
+            x.left = self.__delete(x.left, key)
+        elif key > x.key:
+            x.right = self.__delete(x.right, key)
+        else:
+            if x.right == None:
+                return x.left
+            if x.left == None:
+                return x.right
+
+            t = x
+            x = self.min(t.right)
+            x.right = self.deleteMin(t.right)
+            x.left = t.left
+        x.count = 1 + self.size(x.left) + self.size(x.right)
+        return x
+            
+            
+
         
 
 
