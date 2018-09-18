@@ -98,16 +98,17 @@ class BST:
     def __rangeSearch(self, node, lo, hi, array):
         
         if node == None:
-            return
+            return 
 
-        if lo <= node.key and hi >= node.key:
-            array.append(node.key)
-            return
+        if node.key < lo:
+            self.__rangeSearch(node.right, lo, hi, array)
         elif node.key > hi:
             self.__rangeSearch(node.left, lo, hi, array)
-        elif node.key < lo:
-            self.__rangeSearch(node.right, lo, hi, array)
         
+        self.__rangeSearch(node.left, lo, hi, array)
+        if node.key >= lo and node.key <= hi:
+            array.append(node.key)
+        self.__rangeSearch(node.right, lo, hi, array)
         return 
 
 root = BST.Node("S","S")
@@ -122,4 +123,4 @@ bst.put("M","M")
 bst.put("P","P")
 bst.put("L","L")
 print(bst.keys())
-print(bst.rangeSearch('A', 'S'))
+print(bst.rangeSearch('Z', 'X'))
