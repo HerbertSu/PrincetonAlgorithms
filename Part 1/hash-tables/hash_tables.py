@@ -15,5 +15,6 @@ class Transaction:
 
     def hash(self, key):
         return abs(hash(key)) % self.M
+
 t = Transaction()
 print(t.hashCode())
